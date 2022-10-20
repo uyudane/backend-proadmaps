@@ -5,30 +5,30 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/.bundle
+src/.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+src/log/*
+src/tmp/*
+!src/log/.keep
+!src/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/tmp/pids/*
-!/tmp/pids/
-!/tmp/pids/.keep
+src/tmp/pids/*
+!src/tmp/pids/
+!src/tmp/pids/.keep
 
 # Ignore uploaded files in development.
-/storage/*
-!/storage/.keep
-/tmp/storage/*
-!/tmp/storage/
-!/tmp/storage/.keep
+src/storage/*
+!src/storage/.keep
+src/tmp/storage/*
+!src/tmp/storage/
+!src/tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-/config/master.key
+src/config/master.key
 
-/config/credentials/development.key
+src/config/credentials/development.key
 
 # dockercomposeファイルで指定したファイル。管理不要。
-/db/mysql_data
+src/db/mysql_data
