@@ -1,0 +1,38 @@
+# docker-composeのバージョン
+version: "3"
+
+# 2つのサービスを定義
+services:
+  # mysql
+  db:
+    # ベースイメージ
+    image: mysql:8.0
+    # mysqlの認証形式が変わったためにこのコマンドを打たないとエラーになる
+    command: --default-authentication-plugin=mysql_native_password
+    # ローカルのデータをdockerのディレクトリに同期する(コンテナが消えるたびにデータが消えちゃう)
+    # 開発を楽にするために実施
+    volumes:
+      - ./src/db/mysql_data:/var/lib/mysql
+
+    # 環境変数の設定(パスワード)
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  # rails
+  web:
+    # 指定のディレクトリのdockerファイルをベースとする
+    build: .
+    # railsのサーバを起動している
+    # その際にポートは3000,IPアドレスのバインドは0.0.0.0
+    command: bundle exec rails s -p 3200 -b '0.0.0.0'
+    # ローカルのファイルとdockerファイルを同期するように設定
+    volumes:
+      - ./src:/app
+    # ポート
+    ports:
+      - "3200:3200"
+    environment:
+      RAILS_ENV: development
+    # 依存関係を記載。通常、mysqlのipアドレスを記載する必要があるが、これを書かけばOK
+    depends_on:
+      - db
