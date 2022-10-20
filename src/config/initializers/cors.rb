@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "http://localhost:9000"
+    origins "http://localhost:9000","https://proadmaps.vercel.app/"
 
     resource "*",
       headers: :any,
