@@ -27,6 +27,7 @@ development:
 test:
   <<: *default
   database: app_test
+  host: <%= ENV.fetch("APP_DATABASE_HOST") { 'db' } %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -50,6 +51,7 @@ test:
 #
 production:
   <<: *default
-  database: app_production
-  username: app
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  database: <%= ENV['APP_DATABASE'] %>
+  username: <%= ENV['APP_DATABASE_USERNAME'] %>
+  password: <%= ENV['APP_DATABASE_PASSWORD'] %>
+  host: <%= ENV['APP_DATABASE_HOST'] %>
