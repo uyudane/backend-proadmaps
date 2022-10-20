@@ -24,15 +24,17 @@ services:
     build: .
     # railsのサーバを起動している
     # その際にポートは3000,IPアドレスのバインドは0.0.0.0
-    command: bundle exec rails s -p 3200 -b '0.0.0.0'
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     # ローカルのファイルとdockerファイルを同期するように設定
     volumes:
       - ./src:/app
     # ポート
     ports:
-      - "3200:3200"
+      - "3000:3000"
     environment:
       RAILS_ENV: development
     # 依存関係を記載。通常、mysqlのipアドレスを記載する必要があるが、これを書かけばOK
     depends_on:
       - db
+    tty: true
+    stdin_open: true

@@ -27,3 +27,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+/config/credentials/development.key
+
+# dockercomposeファイルで指定したファイル。管理不要。
+/db/mysql_data
