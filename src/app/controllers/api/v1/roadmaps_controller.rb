@@ -1,5 +1,5 @@
 class Api::V1::RoadmapsController < SecuredController
-  # skip_before_action :authorize_request, only: [:index,:show]
+  skip_before_action :authorize_request, only: [:index,:show]
 
   def index
     roadmaps = Roadmap.all
