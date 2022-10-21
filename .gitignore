@@ -29,6 +29,7 @@ src/tmp/storage/*
 src/config/master.key
 
 src/config/credentials/development.key
+src/config/credentials/production.key
 
 # dockercomposeファイルで指定したファイル。管理不要。
 src/db/mysql_data
