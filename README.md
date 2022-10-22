@@ -71,6 +71,14 @@ SIer 時代に独学でプログラミングを学習しようとして挫折し
 
 [Figma](https://www.figma.com/file/0mi3TY1BTtcFXcVaOYVloi/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0%3A1)
 
+## DB 設計
+
+# git に ER 図を載っけたら修正する
+
+# [ER 図](https://drive.google.com/file/d/1hLq9lhFcgfm9OyGnOkH-T_D_--5xZq9v/view?usp=sharing)
+
+<br>[テーブル定義](https://github.com/uyudane/portfolio-backend/blob/main/DB_design/DB_description.md)
+
 ## スケジュール
 
 1. 企画(アイデア企画・技術調査)：10/16 〆切
