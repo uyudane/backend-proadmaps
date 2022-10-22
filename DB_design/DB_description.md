@@ -16,7 +16,7 @@
 - id : 主キー
 - user_id : 外部キー(Users テーブル)
 - subject_id : 外部キー(Comments/Likes/Stocks/Recomends テーブルとポリモーフィック関連付けを行う)
-- action_type : Comments/Likes/Stocks/Recomends ごとに、実施する通知アクションを管理する。
+- subject_type : Comments/Likes/Stocks/Recomends ごとに、実施する通知アクションを管理する。
 - read : 通知の既読管理をする。
 
 ## Comments テーブル (ロードマップへのコメント情報を格納)
@@ -50,8 +50,8 @@
 - user_id : 外部キー(Users テーブル)
 - title : タイトル
 - introduction : 説明/導入文
-- start_skil : 開始時想定スキル(「プログラミング初心者」、「別言語の学習経験あり」「実務での使用経験あり」等を想定)
-- end_skil : 目標/ゴール(「ポートフォリオ作成」、「実務使用」等を想定)
+- start_skill : 開始時想定スキル(「プログラミング初心者」、「別言語の学習経験あり」「実務での使用経験あり」等を想定)
+- end_skill : 目標/ゴール(「ポートフォリオ作成」、「実務使用」等を想定)
 - status : ステータス(「公開」、「下書き」を enum で管理)
 
 ## Roadmap_Tag テーブル(ロードマップテーブルとタグテーブルの中間テーブル)

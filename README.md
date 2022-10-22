@@ -73,7 +73,10 @@ SIer 時代に独学でプログラミングを学習しようとして挫折し
 
 ## DB 設計
 
-[ER 図](https://drive.google.com/file/d/1hLq9lhFcgfm9OyGnOkH-T_D_--5xZq9v/view?usp=sharing)
+# git に ER 図を載っけたら修正する
+
+# [ER 図](https://drive.google.com/file/d/1hLq9lhFcgfm9OyGnOkH-T_D_--5xZq9v/view?usp=sharing)
+
 <br>[テーブル定義](https://github.com/uyudane/portfolio-backend/blob/main/DB_design/DB_description.md)
 
 ## スケジュール
