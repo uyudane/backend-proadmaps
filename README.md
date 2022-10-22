@@ -69,14 +69,12 @@ SIer 時代に独学でプログラミングを学習しようとして挫折し
 
 ## 画面遷移図
 
-[Figma](https://www.figma.com/file/0mi3TY1BTtcFXcVaOYVloi/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0%3A1)
+[Figma\_画面遷移図](https://www.figma.com/file/0mi3TY1BTtcFXcVaOYVloi/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0%3A1)
+<br>[カスタマージャーニーマップ](https://docs.google.com/spreadsheets/d/1GzpPlzdImhLdQxsnRQElXNBPGJt_X86fwO713I8Jfdo/edit?usp=sharing)
 
 ## DB 設計
 
-# git に ER 図を載っけたら修正する
-
-# [ER 図](https://drive.google.com/file/d/1hLq9lhFcgfm9OyGnOkH-T_D_--5xZq9v/view?usp=sharing)
-
+[ER 図](https://raw.githubusercontent.com/uyudane/portfolio-backend/918501942c1535b6a47e9ee6a8224300487ce118/DB_design/ERD.svg)
 <br>[テーブル定義](https://github.com/uyudane/portfolio-backend/blob/main/DB_design/DB_description.md)
 
 ## スケジュール
