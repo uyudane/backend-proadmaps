@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_19_082944) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_27_123910) do
   create_table "roadmaps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -24,6 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_19_082944) do
     t.string "sub", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "github_account"
+    t.string "twitter_account"
   end
 
   add_foreign_key "roadmaps", "users"
