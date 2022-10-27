@@ -1,14 +1,18 @@
 class Api::V1::ProfilesController < SecuredController
-  skip_before_action :authorize_request, only: [:show]
+  skip_before_action :authorize_request, only: [:index,:show, :update]
 
-  # おそらく使用しない
-  # def index
-  #   profiles = Profile.all
-  #   render json: profiles
-  # end
+  def index
+    profiles = Profile.all
+    render json: profiles
+  end
 
   def show
     profile = Profile.find(params[:id])
+    render json: profile
+  end
+
+  def whoami
+    profile = @current_user.profile
     render json: profile
   end
 
@@ -24,6 +28,15 @@ class Api::V1::ProfilesController < SecuredController
       else
         render json: profile.errors, status: :unprocessable_entity
       end
+    end
+  end
+
+  def update
+    profile = Profile.find(params[:id])
+    if profile.update(profile_params)
+      render json: profile
+    else
+      render json: profile.errors, status: :unprocessable_entity
     end
   end
 
