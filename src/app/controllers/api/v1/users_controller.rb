@@ -7,7 +7,7 @@ class Api::V1::UsersController < SecuredController
   end
 
   def show
-    user = User.find(params[:id])
+    user = User.find_by(sub: params[:id])
     render json: user
   end
 
