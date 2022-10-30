@@ -13,7 +13,6 @@ class Api::V1::RoadmapsController < SecuredController
 
   def create
     # ユーザー認証
-    # binding.break
     roadmap = @current_user.roadmaps.build(roadmap_params)
 
     if roadmap.save
@@ -31,6 +30,6 @@ class Api::V1::RoadmapsController < SecuredController
   private
 
   def roadmap_params
-    params.permit(:title,:introduction)
+    params.permit(:title,:introduction,:start_skill,:end_skill)
   end
 end
