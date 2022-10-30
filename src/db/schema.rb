@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_27_123910) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_30_055652) do
   create_table "roadmaps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
     t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "start_skill"
+    t.text "end_skill"
     t.index ["user_id"], name: "index_roadmaps_on_user_id"
   end
 
@@ -27,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_123910) do
     t.string "name", null: false
     t.string "github_account"
     t.string "twitter_account"
+    t.string "avatar"
   end
 
   add_foreign_key "roadmaps", "users"
