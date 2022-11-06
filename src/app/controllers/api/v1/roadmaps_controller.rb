@@ -2,8 +2,19 @@ class Api::V1::RoadmapsController < SecuredController
   skip_before_action :authorize_request, only: [:index,:show]
 
   def index
-    roadmaps = Roadmap.all
-    render json: roadmaps
+    # ロードマップのIDをキーにして、dataの中に
+    # ロードマップの情報(id,title,introduction,start_skill,end_skill,created_at,update_at)と、
+    # 関連づけられている情報(User,Tags,Steps)を渡す。
+    data = []
+    Roadmap.preload(:user,:tags,:steps).all.each do |roadmap|
+      tmp = {}
+      tmp.store("roadmap",roadmap)
+      tmp.store("user",roadmap.user)
+      tmp.store("tags",roadmap.tags)
+      tmp.store("steps",roadmap.steps)
+      data << tmp
+    end
+    render json: data
   end
 
   def show
