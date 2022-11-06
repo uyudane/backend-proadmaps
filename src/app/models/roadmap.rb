@@ -14,7 +14,8 @@ class Roadmap < ApplicationRecord
 
       # 取得したstep情報とインデックス(配列の順番)を使用して、ロードマップに紐づいたstep情報を作成する
       step_list.each.with_index do |step,index|
-        self.steps.build(url: step[:url],title: step[:title],introduction: step[:introduction],required_time: step[:required_time],year: step[:year], month: step[:month], step_number: (index+1))
+        step_params = step.permit(:url,:title,:introduction,:required_time, :year,:month).merge(step_number: index+1)
+        self.steps.build(step_params)
       end
       save!
     end
