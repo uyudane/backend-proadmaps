@@ -15,7 +15,8 @@ class Api::V1::RoadmapsController < SecuredController
     # ユーザー認証
     roadmap = @current_user.roadmaps.build(roadmap_params)
     tag_list = params[:tags]
-    if roadmap.save_with_tags(tag_list)
+    step_list = params[:steps]
+    if roadmap.save_with_tags_steps(tag_list: tag_list,step_list: step_list)
       render json: tag_list, status: 200
     else
       # 422 Unprocessable Entity
