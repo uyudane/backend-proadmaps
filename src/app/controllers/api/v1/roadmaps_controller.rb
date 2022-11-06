@@ -14,10 +14,12 @@ class Api::V1::RoadmapsController < SecuredController
   def create
     # ユーザー認証
     roadmap = @current_user.roadmaps.build(roadmap_params)
-
-    if roadmap.save
-      render json: roadmap
+    tag_list = params[:tags]
+    if roadmap.save_with_tags(tag_list)
+      render json: tag_list, status: 200
     else
+      # 422 Unprocessable Entity
+      #サーバーが要求本文のコンテンツ型を理解でき、要求本文の構文が正しいものの、中に含まれている指示が処理できなかったこと
       render json: roadmap.errors, status: :unprocessable_entity
     end
   end

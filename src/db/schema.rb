@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_055652) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_06_044302) do
+  create_table "roadmap_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "roadmap_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["roadmap_id"], name: "index_roadmap_tags_on_roadmap_id"
+    t.index ["tag_id", "roadmap_id"], name: "index_roadmap_tags_on_tag_id_and_roadmap_id", unique: true
+    t.index ["tag_id"], name: "index_roadmap_tags_on_tag_id"
+  end
+
   create_table "roadmaps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title", null: false
@@ -20,6 +30,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_055652) do
     t.text "start_skill"
     t.text "end_skill"
     t.index ["user_id"], name: "index_roadmaps_on_user_id"
+  end
+
+  create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -32,5 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_055652) do
     t.string "avatar"
   end
 
+  add_foreign_key "roadmap_tags", "roadmaps"
+  add_foreign_key "roadmap_tags", "tags"
   add_foreign_key "roadmaps", "users"
 end
