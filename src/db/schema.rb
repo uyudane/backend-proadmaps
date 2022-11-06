@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_06_044302) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_06_060023) do
   create_table "roadmap_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "roadmap_id", null: false
     t.bigint "tag_id", null: false
@@ -30,6 +30,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_06_044302) do
     t.text "start_skill"
     t.text "end_skill"
     t.index ["user_id"], name: "index_roadmaps_on_user_id"
+  end
+
+  create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "roadmap_id", null: false
+    t.text "url"
+    t.string "title", null: false
+    t.text "introduction"
+    t.string "required_time"
+    t.string "year"
+    t.string "month"
+    t.integer "step_number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["roadmap_id"], name: "index_steps_on_roadmap_id"
   end
 
   create_table "tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -52,4 +66,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_06_044302) do
   add_foreign_key "roadmap_tags", "roadmaps"
   add_foreign_key "roadmap_tags", "tags"
   add_foreign_key "roadmaps", "users"
+  add_foreign_key "steps", "roadmaps"
 end
