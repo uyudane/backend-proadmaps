@@ -2,6 +2,9 @@ class Roadmap < ApplicationRecord
   belongs_to :user
   has_many :roadmap_tags, dependent: :destroy
   has_many :tags, through: :roadmap_tags
+  has_many :steps, dependent: :destroy
+
+  validates :title, presence:true
 
   def save_with_tags(tag_list)
     ActiveRecord::Base.transaction do
