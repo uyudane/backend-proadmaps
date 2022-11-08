@@ -7,8 +7,8 @@ class Api::V1::RoadmapsController < SecuredController
   end
 
   def show
-    roadmap = Roadmap.find(params[:id])
-    render json: roadmap
+    roadmap = Roadmap.preload(:user,:tags,:steps).find(params[:id])
+    render json: roadmap, serializer: RoadmapSerializer
   end
 
   def create

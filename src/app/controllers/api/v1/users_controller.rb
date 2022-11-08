@@ -2,8 +2,8 @@ class Api::V1::UsersController < SecuredController
   skip_before_action :authorize_request, only: [:index,:show]
 
   def index
-    users = User.all
-    render json: users
+    users = User.preload(:roadmaps).all
+    render json: users, each_serializer: UserSerializer
   end
 
   def show
