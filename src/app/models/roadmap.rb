@@ -32,17 +32,23 @@ class Roadmap < ApplicationRecord
       # 新たに関連づけられると、元あったタグは、中間テーブルから削除される
       self.tags = tag_list.map { |tag| Tag.find_or_initialize_by(name: tag[:name].strip) }
 
+      # 現在ロードマップに紐づいているstepのidを確認(今回のリクエストで存在しなかったものを削除するために使用)
+      current_id = self.steps.map {|step| step[:id]}
+
       # 取得したstep情報とインデックス(配列の順番)を使用して、ロードマップに紐づいたstep情報を作成する
       step_list.each.with_index do |step,index|
-        if self.steps.find_by_id(step[:id])
-          target_step = self.steps.find(step[:id])
         step_params = step.permit(:url,:title,:introduction,:required_time, :year,:month).merge(step_number: index+1)
+        # 既存のステップの場合は上書きする
+        if target_step = self.steps.find_by_id(step[:id])
           target_step.update!(step_params)
+          # 削除対象idリストから外す
+          current_id.delete(step[:id])
+        # 新しいステップの場合は新しく作成する
         else
-          step_params = step.permit(:url,:title,:introduction,:required_time, :year,:month).merge(step_number: index+1)
           self.steps.build(step_params)
         end
       end
+      current_id.each {|id| (Step.find(id)).destroy!}
       update!(roadmap_params)
     end
     true
