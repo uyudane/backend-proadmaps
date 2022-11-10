@@ -7,6 +7,9 @@ class Roadmap < ApplicationRecord
   validates :title, presence:true
   validates :is_published, inclusion: [true, false]
 
+  scope :published, -> {where(is_published: true)}
+  scope :draft, -> {where(is_published: false)}
+
   def save_with_tags_steps(tag_list:,step_list: [])
     ActiveRecord::Base.transaction do
       # Tagが既にあればそのオブジェクトを、なければ新しくタグを作成して作成後のオブジェクトを返し、

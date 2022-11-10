@@ -2,7 +2,7 @@ class Api::V1::RoadmapsController < SecuredController
   skip_before_action :authorize_request, only: [:index,:show]
 
   def index
-    roadmaps = Roadmap.preload(:user,:tags,:steps).all
+    roadmaps = Roadmap.preload(:user,:tags,:steps).published
     render json: roadmaps, each_serializer: RoadmapSerializer
   end
 
