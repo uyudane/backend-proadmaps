@@ -48,6 +48,6 @@ class Api::V1::RoadmapsController < SecuredController
   private
 
   def roadmap_params
-    params.permit(:title,:introduction,:start_skill,:end_skill,:id)
+    params.permit(:title,:introduction,:start_skill,:end_skill,:id, :is_published)
   end
 end
