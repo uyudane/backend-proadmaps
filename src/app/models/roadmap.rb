@@ -5,6 +5,7 @@ class Roadmap < ApplicationRecord
   has_many :steps, dependent: :destroy
 
   validates :title, presence:true
+  validates :is_published, presence:true
 
   def save_with_tags_steps(tag_list:,step_list: [])
     ActiveRecord::Base.transaction do
