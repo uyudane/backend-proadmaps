@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_06_060023) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_10_074415) do
   create_table "roadmap_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "roadmap_id", null: false
     t.bigint "tag_id", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_06_060023) do
     t.datetime "updated_at", null: false
     t.text "start_skill"
     t.text "end_skill"
+    t.boolean "is_published", default: false, null: false
     t.index ["user_id"], name: "index_roadmaps_on_user_id"
   end
 
