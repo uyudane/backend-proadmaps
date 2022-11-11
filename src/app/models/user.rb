@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :roadmaps, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_roadmaps, through: :likes, source: :roadmap
 
   validates :name, presence:true
 
