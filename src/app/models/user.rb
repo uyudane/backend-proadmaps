@@ -10,4 +10,16 @@ class User < ApplicationRecord
     # ユーザ登録をしたタイミングの場合は、ユーザテーブルにsubとユーザ名を追加
     find_by(sub: payload['sub'].split("|")[1]) || create!(sub: payload['sub'].split("|")[1],name: payload['.name'])
   end
+
+  def like(roadmap)
+    like_roadmaps << roadmap
+  end
+
+  def unlike(roadmap)
+    like_roadmaps.destroy(roadmap)
+  end
+
+  def like?(roadmap)
+    like_roadmaps.include?(roadmap)
+  end
 end
