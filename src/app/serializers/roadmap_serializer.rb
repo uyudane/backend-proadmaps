@@ -4,4 +4,5 @@ class RoadmapSerializer < ActiveModel::Serializer
   belongs_to :user, serializer: UserSerializer
   has_many :tags, serializer: TagSerializer
   has_many :steps, serializer: StepSerializer
+  has_many :likes, serializer: LikeSerializer
 end

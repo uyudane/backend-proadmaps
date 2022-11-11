@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :roadmaps
       get 'users/whoami',to: 'users#whoami'
       resources :users
+      resources :likes, only: %i[create destroy]
     end
   end
 end

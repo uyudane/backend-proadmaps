@@ -3,6 +3,7 @@ class Roadmap < ApplicationRecord
   has_many :roadmap_tags, dependent: :destroy
   has_many :tags, through: :roadmap_tags
   has_many :steps, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :title, presence:true
   validates :is_published, inclusion: [true, false]

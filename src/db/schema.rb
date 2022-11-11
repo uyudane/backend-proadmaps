@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_10_074415) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_11_015327) do
+  create_table "likes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "roadmap_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["roadmap_id"], name: "index_likes_on_roadmap_id"
+    t.index ["user_id", "roadmap_id"], name: "index_likes_on_user_id_and_roadmap_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "roadmap_tags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "roadmap_id", null: false
     t.bigint "tag_id", null: false
@@ -64,6 +74,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_10_074415) do
     t.string "avatar"
   end
 
+  add_foreign_key "likes", "roadmaps"
+  add_foreign_key "likes", "users"
   add_foreign_key "roadmap_tags", "roadmaps"
   add_foreign_key "roadmap_tags", "tags"
   add_foreign_key "roadmaps", "users"
