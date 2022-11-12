@@ -3,6 +3,6 @@ class Api::V1::TagsController < SecuredController
 
   def index
     tags = Tag.all
-    render json: tags
+    render json: tags, each_serializer: TagSerializer
   end
 end
