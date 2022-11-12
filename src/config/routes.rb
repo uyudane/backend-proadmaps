@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get 'users/whoami',to: 'users#whoami'
       resources :users
       resources :likes, only: %i[create destroy]
+      resources :tags, only: %i[index]
     end
   end
 end
