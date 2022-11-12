@@ -26,6 +26,13 @@ class Api::V1::UsersController < SecuredController
     end
   end
 
+  def destroy
+    if params[:id] == @current_user.sub
+      @current_user.destroy
+      render json: { status: 200, message: 'OK'}
+    end
+  end
+
   private
 
   def user_params
