@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :like_roadmaps, through: :likes, source: :roadmap
 
   validates :name, presence:true
+  validates :avatar, presence:true
 
   def self.from_token_payload(payload)
     # すでにユーザ情報があった場合はその情報を取得
