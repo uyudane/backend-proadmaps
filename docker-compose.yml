@@ -3,20 +3,20 @@ version: "3"
 
 # 2つのサービスを定義
 services:
-  # mysql
+  # postgres
   db:
     # ベースイメージ
-    image: mysql:8.0
-    # mysqlの認証形式が変わったためにこのコマンドを打たないとエラーになる
-    command: --default-authentication-plugin=mysql_native_password
+    image: postgres:latest
+
     # ローカルのデータをdockerのディレクトリに同期する(コンテナが消えるたびにデータが消えちゃう)
     # 開発を楽にするために実施
     volumes:
-      - ./src/db/mysql_data:/var/lib/mysql
-
+      - ./tmp/db:/var/lib/postgresql/data
     # 環境変数の設定(パスワード)
     environment:
-      MYSQL_ROOT_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: proadmaps_development
 
   # rails
   web:
