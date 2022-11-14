@@ -48,7 +48,7 @@ class Roadmap < ApplicationRecord
         step_params = step.permit(:url, :title, :introduction, :required_time, :year,
                                   :month).merge(step_number: index + 1)
         # 既存のステップの場合は上書きする
-        if target_step = steps.find_by_id(step[:id])
+        if target_step == steps.find_by_id(step[:id])
           target_step.update!(step_params)
           # 削除対象idリストから外す
           current_id.delete(step[:id])
