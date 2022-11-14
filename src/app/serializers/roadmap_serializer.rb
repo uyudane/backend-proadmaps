@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoadmapSerializer < ActiveModel::Serializer
   attributes :id, :title, :introduction, :created_at, :start_skill, :end_skill, :is_published
 

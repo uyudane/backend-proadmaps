@@ -7,12 +7,12 @@ class JsonWebToken
   def self.verify(token)
     # binding.b
     JWT.decode(token, nil,
-              true, # Verify the signature of this token
-              algorithm: 'RS256',
-              iss: "https://#{Rails.application.credentials.auth0[:domain]}/",
-              verify_iss: true,
-              aud: Rails.application.credentials.auth0[:api_identifier],
-              verify_aud: true) do |header|
+               true, # Verify the signature of this token
+               algorithm: 'RS256',
+               iss: "https://#{Rails.application.credentials.auth0[:domain]}/",
+               verify_iss: true,
+               aud: Rails.application.credentials.auth0[:api_identifier],
+               verify_aud: true) do |header|
       jwks_hash[header['kid']]
     end
   end

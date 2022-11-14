@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoadmapTag < ApplicationRecord
   belongs_to :roadmap
   belongs_to :tag
