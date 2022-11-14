@@ -33,3 +33,5 @@ src/config/credentials/production.key
 
 # dockercomposeファイルで指定したファイル。管理不要。
 src/db/mysql_data
+
+tmp/db
