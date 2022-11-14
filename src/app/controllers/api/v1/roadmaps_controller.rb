@@ -1,4 +1,5 @@
-# ロードマップ
+# frozen_string_literal: true
+
 class Api::V1::RoadmapsController < SecuredController
   skip_before_action :authorize_request, only: %i[index show]
 

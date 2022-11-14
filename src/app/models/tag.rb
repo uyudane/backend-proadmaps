@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tag < ApplicationRecord
   has_many :roadmap_tags, dependent: :destroy
   has_many :roadmaps, through: :roadmap_tags

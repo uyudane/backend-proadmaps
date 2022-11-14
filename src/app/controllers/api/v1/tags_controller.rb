@@ -1,4 +1,5 @@
-# ロードマップのタグ
+# frozen_string_literal: true
+
 class Api::V1::TagsController < SecuredController
   skip_before_action :authorize_request, only: [:index]
 

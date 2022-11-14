@@ -1,4 +1,5 @@
-# ロードマップへのいいね機能
+# frozen_string_literal: true
+
 class Api::V1::LikesController < SecuredController
   def create
     roadmap = Roadmap.find(params[:roadmapId])
