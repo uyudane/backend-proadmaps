@@ -1,13 +1,14 @@
+# ロードマップ
 class Api::V1::RoadmapsController < SecuredController
-  skip_before_action :authorize_request, only: [:index,:show]
+  skip_before_action :authorize_request, only: %i[index show]
 
   def index
-    roadmaps = Roadmap.preload(:user,:tags,:steps).published
+    roadmaps = Roadmap.preload(:user, :tags, :steps).published
     render json: roadmaps, each_serializer: RoadmapSerializer
   end
 
   def show
-    roadmap = Roadmap.preload(:user,:tags,:steps).find(params[:id])
+    roadmap = Roadmap.preload(:user, :tags, :steps).find(params[:id])
     render json: roadmap, serializer: RoadmapSerializer
   end
 
@@ -16,11 +17,11 @@ class Api::V1::RoadmapsController < SecuredController
     roadmap = @current_user.roadmaps.build(roadmap_params)
     tag_list = params[:tags]
     step_list = params[:steps]
-    if roadmap.save_with_tags_steps(tag_list: tag_list,step_list: step_list)
+    if roadmap.save_with_tags_steps(tag_list:, step_list:)
       render json: tag_list, status: 200
     else
       # 422 Unprocessable Entity
-      #サーバーが要求本文のコンテンツ型を理解でき、要求本文の構文が正しいものの、中に含まれている指示が処理できなかったこと
+      # サーバーが要求本文のコンテンツ型を理解でき、要求本文の構文が正しいものの、中に含まれている指示が処理できなかったこと
       render json: roadmap.errors, status: :unprocessable_entity
     end
   end
@@ -28,7 +29,7 @@ class Api::V1::RoadmapsController < SecuredController
   def destroy
     roadmap = @current_user.roadmaps.find(params[:id])
     roadmap.destroy
-    render json: { status: 200, message: 'OK'}
+    render json: { status: 200, message: 'OK' }
   end
 
   def update
@@ -36,11 +37,11 @@ class Api::V1::RoadmapsController < SecuredController
     roadmap = @current_user.roadmaps.find(params[:id])
     tag_list = params[:tags]
     step_list = params[:steps]
-    if roadmap.update_with_tags_steps(tag_list: tag_list,step_list: step_list,roadmap_params: roadmap_params)
+    if roadmap.update_with_tags_steps(tag_list:, step_list:, roadmap_params:)
       render json: tag_list, status: 200
     else
       # 422 Unprocessable Entity
-      #サーバーが要求本文のコンテンツ型を理解でき、要求本文の構文が正しいものの、中に含まれている指示が処理できなかったこと
+      # サーバーが要求本文のコンテンツ型を理解でき、要求本文の構文が正しいものの、中に含まれている指示が処理できなかったこと
       render json: roadmap.errors, status: :unprocessable_entity
     end
   end
@@ -48,6 +49,6 @@ class Api::V1::RoadmapsController < SecuredController
   private
 
   def roadmap_params
-    params.permit(:title,:introduction,:start_skill,:end_skill,:id, :is_published)
+    params.permit(:title, :introduction, :start_skill, :end_skill, :id, :is_published)
   end
 end

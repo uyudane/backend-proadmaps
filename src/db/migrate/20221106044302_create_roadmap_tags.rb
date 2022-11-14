@@ -6,6 +6,6 @@ class CreateRoadmapTags < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :roadmap_tags, [:tag_id, :roadmap_id], unique: true
+    add_index :roadmap_tags, %i[tag_id roadmap_id], unique: true
   end
 end

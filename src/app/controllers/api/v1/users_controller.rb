@@ -1,5 +1,6 @@
+# ユーザー
 class Api::V1::UsersController < SecuredController
-  skip_before_action :authorize_request, only: [:index,:show]
+  skip_before_action :authorize_request, only: %i[index show]
 
   def index
     users = User.preload(:roadmaps).all
@@ -27,15 +28,15 @@ class Api::V1::UsersController < SecuredController
   end
 
   def destroy
-    if params[:id] == @current_user.sub
-      @current_user.destroy
-      render json: { status: 200, message: 'OK'}
-    end
+    return unless params[:id] == @current_user.sub
+
+    @current_user.destroy
+    render json: { status: 200, message: 'OK' }
   end
 
   private
 
   def user_params
-    params.permit(:name,:github_account,:twitter_account)
+    params.permit(:name, :github_account, :twitter_account)
   end
 end
