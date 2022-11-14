@@ -47,14 +47,14 @@ class Roadmap < ApplicationRecord
       step_list.each.with_index do |step, index|
         step_params = step.permit(:url, :title, :introduction, :required_time, :year,
                                   :month).merge(step_number: index + 1)
-        # 既存のステップの場合は上書きする
-        if target_step == steps.find_by_id(step[:id])
-          target_step.update!(step_params)
+        # 新しいステップの場合は新しく作成する
+        if steps.find_by_id(step[:id]).nil?
+          steps.build(step_params)
+        else
+          # 既存のステップの場合は上書きする
+          steps.find_by_id(step[:id]).update!(step_params)
           # 削除対象idリストから外す
           current_id.delete(step[:id])
-        # 新しいステップの場合は新しく作成する
-        else
-          steps.build(step_params)
         end
       end
       current_id.each { |id| Step.find(id).destroy! }
