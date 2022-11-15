@@ -7,16 +7,37 @@ AllCops:
     - "node_modules/**/*"
   DisplayCopNames: true
 
+# ブロックの開始後に複数行のdo endブロックに改行があるかどうかをチェック
 Layout/MultilineBlockLayout:
   Exclude:
     - "spec/**/*_spec.rb"
 
+# 1行あたりの文字数
 Layout/LineLength:
   Enabled: false
 
+# 以下をチェック
+# Assignment: 変数への代入
+# Branch: 関数の呼び出し
+# Condition: 条件分岐
 Metrics/AbcSize:
   Max: 25
 
+# ダブルクオーテーションに統一
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# セミコロンによって、同一行に複数ステートメントを記述しているかをチェック
+Style/Semicolon:
+  Exclude:
+    - "spec/**/*"
+
+# 余分なスペースがないかをチェック
+Layout/ExtraSpacing:
+  Exclude:
+    - "db/migrate/*.rb"
+
+# 1 つのブロックあたりの行数をチェック
 Metrics/BlockLength:
   Max: 30
   Exclude:
@@ -24,51 +45,68 @@ Metrics/BlockLength:
     - "config/**/*"
     - "spec/**/*_spec.rb"
 
+# クラスの長さをチェック
 Metrics/ClassLength:
   CountComments: false
   Max: 300
 
+# メソッドの複雑さをチェック
 Metrics/CyclomaticComplexity:
-  Max: 30
+  Max: 10
 
+# メソッド内での複雑度をチェック
 Metrics/MethodLength:
   CountComments: false
-  Max: 30
+  Max: 20
+  Exclude:
+    - "db/migrate/*.rb"
 
+# アクセッサメソッドの名前が正しく付けられていることをチェック
 Naming/AccessorMethodName:
   Exclude:
     - "app/controllers/**/*"
 
+# 英語以外をコメントで使用していないかをチェック
 Style/AsciiComments:
   Enabled: false
 
+# 1行または複数行のブロックの周囲に中括弧やdo/endが使用されているかどうかをチェック
 Style/BlockDelimiters:
   Exclude:
     - "spec/**/*_spec.rb"
 
+# 子クラスの書き方を統一させる(ネストさせるか::にするか)
 Style/ClassAndModuleChildren:
   Enabled: false
 
+# クラスとモジュールの説明のコメントがあるかをチェック。
 Style/Documentation:
   Enabled: false
 
+# # frozen_string_literal: trueをつけているかチェック
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# if/unlessが書かれた際に、行数をチェック
 Style/IfUnlessModifier:
   Enabled: false
 
+# while/untilが書かれた際に、行数をチェック
 Style/WhileUntilModifier:
   Enabled: false
 
+# hashメソッドでeach_key や each_value が使われているかをチェック。
 Style/HashEachMethods:
-  Enabled: false
+  Enabled: true
 
+# transform_keysを使えるところで使っているかをチェック
 Style/HashTransformKeys:
-  Enabled: false
+  Enabled: true
 
+# transform_valuesを使えるところで使っているかをチュエック
 Style/HashTransformValues:
-  Enabled: false
+  Enabled: true
 
+# gemをアルファベット順にソート
 Bundler/OrderedGems:
   Enabled: false
