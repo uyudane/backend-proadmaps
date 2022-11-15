@@ -42,26 +42,28 @@ jobs:
           name: test
           command: bundle exec rspec
 
-  # deploy:
-  #   docker:
-  #     - image: cimg/ruby:3.1
-  #   steps:
-  #     - checkout
-  #     - setup_remote_docker:
-  #         version: 19.03.13
-  #     - heroku/install
-  #     - run:
-  #         name: heroku login
-  #         command: heroku container:login
-  #     - run:
-  #         name: push docker image
-  #         command: heroku container:push web -a $HEROKU_APP_NAME
-  #     - run:
-  #         name: release docker image
-  #         command: heroku container:release web -a $HEROKU_APP_NAME
-  #     - run:
-  #         name: database setup
-  #         command: heroku run bundle exec rake db:migrate RAILS_ENV=production -a $HEROKU_APP_NAME
+  deploy:
+    docker:
+      - image: cimg/ruby:3.1
+    steps:
+      - checkout
+      # herokuにデプロイする際にdockerコマンドを使用できるようにしている
+      - setup_remote_docker:
+          version: 19.03.13
+      - heroku/install
+      - run:
+          name: heroku login
+          command: heroku container:login
+      - run:
+          name: push docker image
+          # HEROKU_APP_NAMEはcircleciに環境変数で設定
+          command: heroku container:push web -a $HEROKU_APP_NAME
+      - run:
+          name: release docker image
+          command: heroku container:release web -a $HEROKU_APP_NAME
+      - run:
+          name: database setup
+          command: heroku run bundle exec rake db:migrate RAILS_ENV=production -a $HEROKU_APP_NAME
 
 workflows:
   version: 2
@@ -71,9 +73,10 @@ workflows:
       - test:
           requires:
             - build
-      # - deploy:
-      #     requires:
-      #       - test
-      #     filters:
-      #       branches:
-      #         only: main
+      - deploy:
+          requires:
+            - test
+          # mainブランチにマージされた時のみbuildを行う
+          filters:
+            branches:
+              only: main
