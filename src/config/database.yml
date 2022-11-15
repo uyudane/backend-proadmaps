@@ -61,6 +61,7 @@ development:
 test:
   <<: *default
   database: proadmaps_test
+  # ローカルではdocker-composeのdb、CircleCIではdocker-composeが使用できないため、環境変数を使用
   host: <%= ENV.fetch("APP_DATABASE_HOST") { 'db' } %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
