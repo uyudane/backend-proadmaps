@@ -40,7 +40,7 @@ jobs:
           command: bundle exec rails db:migrate
       - run:
           name: test
-          command: bundle exec rake test
+          command: bundle exec rspec
 
   # deploy:
   #   docker:
