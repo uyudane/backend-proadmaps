@@ -46,6 +46,7 @@ group :development, :test do
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
   gem "rspec-rails"
+  gem 'bullet' # N+1問題のチェック
 end
 
 group :development do

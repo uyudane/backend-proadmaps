@@ -75,6 +75,9 @@ GEM
     bootsnap (1.13.0)
       msgpack (~> 1.2)
     builder (3.2.4)
+    bullet (7.0.3)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11)
     case_transform (0.2)
       activesupport
     concurrent-ruby (1.1.10)
@@ -200,6 +203,7 @@ GEM
     tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.3.0)
+    uniform_notifier (1.16.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -212,6 +216,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   bootsnap
+  bullet
   debug
   jwt
   pg (~> 1.1)
