@@ -32,7 +32,7 @@ class Api::V1::UsersController < SecuredController
     return unless params[:id] == @current_user.sub
 
     @current_user.destroy
-    render json: { status: 200, message: 'OK' }
+    render json: { status: 200, message: "OK" }
   end
 
   private

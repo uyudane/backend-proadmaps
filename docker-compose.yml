@@ -6,7 +6,7 @@ services:
   # postgres
   db:
     # ベースイメージ
-    image: postgres:latest
+    image: postgres:14
 
     # ローカルのデータをdockerのディレクトリに同期する(コンテナが消えるたびにデータが消えちゃう)
     # 開発を楽にするために実施

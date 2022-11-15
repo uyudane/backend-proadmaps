@@ -8,12 +8,12 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     if Rails.env.production?
-      origins 'https://proadmaps.com'
+      origins "https://proadmaps.com"
     else
-      origins 'http://localhost:9000'
+      origins "http://localhost:9000"
     end
 
-    resource '*',
+    resource "*",
              headers: :any,
              methods: %i[get post put patch delete options head]
   end

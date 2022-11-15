@@ -12,8 +12,8 @@ class User < ApplicationRecord
     # すでにユーザ情報があった場合はその情報を取得
     # ユーザ登録をしたタイミングの場合は、ユーザテーブルにsubとユーザ名を追加
     # ユーザ名は、メールアドレスの場合はusernameから、SNSの場合はnameから取る(emailだとnameがメールアドレスになる)
-    find_by(sub: payload['sub'].split('|')[1]) || create!(sub: payload['sub'].split('|')[1],
-                                                          name: payload['.username'] || payload['.name'], avatar: payload['.picture'])
+    find_by(sub: payload["sub"].split("|")[1]) || create!(sub: payload["sub"].split("|")[1],
+                                                          name: payload[".username"] || payload[".name"], avatar: payload[".picture"])
   end
 
   def like(roadmap)

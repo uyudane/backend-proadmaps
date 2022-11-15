@@ -30,7 +30,7 @@ class Api::V1::RoadmapsController < SecuredController
   def destroy
     roadmap = @current_user.roadmaps.find(params[:id])
     roadmap.destroy
-    render json: { status: 200, message: 'OK' }
+    render json: { status: 200, message: "OK" }
   end
 
   def update
