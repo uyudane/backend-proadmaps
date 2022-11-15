@@ -85,7 +85,5 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  # url: <%= ENV['DATABASE_URL'] %>
-  database: proadmaps_production
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
+  # herokuに設定した環境変数をもとにDBに接続する
+  url: <%= ENV['DATABASE_URL'] %>
