@@ -24,14 +24,13 @@ class Api::V1::UsersController < SecuredController
     if user.update(user_params)
       render json: user
     else
-      render json: user.errors, status: :unprocessable_entity
+      render_500(nil, user.errors.full_messages)
     end
   end
 
   def destroy
     return unless params[:id] == @current_user.sub
-
-    @current_user.destroy
+    @current_user.destroy!
     render json: { status: 200, message: "OK" }
   end
 
