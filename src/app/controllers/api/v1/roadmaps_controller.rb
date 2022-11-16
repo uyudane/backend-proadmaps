@@ -23,12 +23,12 @@ class Api::V1::RoadmapsController < SecuredController
     if roadmap.save_with_tags_steps(tag_list:, step_list:)
       render json: tag_list, status: 200
     else
-      render_400(nil, roadmap.errors.full_messages)
+      render_500(nil, roadmap.errors.full_messages)
     end
   end
 
   def destroy
-    roadmap.destroy!
+    @roadmap.destroy!
     render json: { status: 200, message: "OK" }
   end
 
@@ -36,17 +36,17 @@ class Api::V1::RoadmapsController < SecuredController
     # ユーザー認証
     tag_list = params[:tags]
     step_list = params[:steps]
-    if roadmap.update_with_tags_steps(tag_list:, step_list:, roadmap_params:)
+    if @roadmap.update_with_tags_steps(tag_list:, step_list:, roadmap_params:)
       render json: tag_list, status: 200
     else
-      render_400(nil, roadmap.errors.full_messages)
+      render_500(nil, roadmap.errors.full_messages)
     end
   end
 
   private
 
   def set_roadmap
-    roadmap = @current_user.roadmaps.find(params[:id])
+    @roadmap = @current_user.roadmaps.find(params[:id])
   end
 
   def roadmap_params

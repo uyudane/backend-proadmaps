@@ -24,7 +24,7 @@ class Api::V1::UsersController < SecuredController
     if user.update(user_params)
       render json: user
     else
-      render_400(nil, user.errors.full_messages)
+      render_500(nil, user.errors.full_messages)
     end
   end
 
