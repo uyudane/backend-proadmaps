@@ -6,7 +6,7 @@ class Api::V1::RoadmapsController < SecuredController
 
   # 公開済みのロードマップ一覧を返却
   def index
-    roadmaps = Roadmap.preload(:user, :tags, :steps).published
+    roadmaps = Roadmap.preload(:user, :tags, :steps).published.order(id: "DESC")
     render json: roadmaps, each_serializer: RoadmapSerializer
   end
 
