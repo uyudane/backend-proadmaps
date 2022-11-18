@@ -1,3 +1,6 @@
+こちらは「ProadMaps」のバックエンドのリポジトリになります。フロントエンドのソースは
+[こちら](https://github.com/uyudane/frontend_proadmaps)です。
+
 # README
 
 ## サービス概要
