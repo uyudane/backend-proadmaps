@@ -8,19 +8,20 @@
 
 ## 使用技術
 
-### 🔻 認証
+### 認証
 
 - Auth0
 
-### 🔻 バックエンド
+### バックエンド
 
 - Ruby(3.1.2)
 - Ruby&nbsp;on&nbsp;Rails(7.0.4)\*API モード
 
-### 🔻 フロントエンド
+### フロントエンド
 
 - Typescript
 - React(18.2.0)
+- Next.js(12.3.1)
 - Recoil
 - Axios
 - MUI
