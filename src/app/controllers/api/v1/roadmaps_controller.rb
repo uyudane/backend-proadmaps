@@ -21,7 +21,7 @@ class Api::V1::RoadmapsController < SecuredController
     tag_list = params[:tags]
     step_list = params[:steps]
     if roadmap.save_with_tags_steps(tag_list:, step_list:)
-      render json: tag_list, status: 200
+      render json: roadmap, status: 200
     else
       render_500(nil, roadmap.errors.full_messages)
     end
@@ -37,9 +37,9 @@ class Api::V1::RoadmapsController < SecuredController
     tag_list = params[:tags]
     step_list = params[:steps]
     if @roadmap.update_with_tags_steps(tag_list:, step_list:, roadmap_params:)
-      render json: tag_list, status: 200
+      render json: @roadmap, status: 200
     else
-      render_500(nil, roadmap.errors.full_messages)
+      render_500(nil, @roadmap.errors.full_messages)
     end
   end
 
