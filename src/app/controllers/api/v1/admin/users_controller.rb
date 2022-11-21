@@ -6,7 +6,7 @@ class Api::V1::Admin::UsersController < Api::V1::Admin::BaseController
   end
 
   def destroy
-    user = User.find(params[:id])
+    user = User.find_by(sub: params[:id])
     user.destroy!
     render json: { status: 200, message: "OK" }
   end
