@@ -6,7 +6,6 @@ class SecuredController < ApplicationController
   private
 
   def authorize_request
-    # binding.break
     authorize_request = AuthorizationService.new(request.headers)
     @current_user = authorize_request.current_user
   rescue JWT::VerificationError, JWT::DecodeError
