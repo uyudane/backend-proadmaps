@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       resources :users
       resources :likes, only: %i[create destroy]
       resources :tags, only: %i[index]
+      namespace :admin do
+        resources :users, only: [:index, :destroy]
+        resources :roadmaps, only: [:index, :destroy]
+      end
     end
   end
 end
