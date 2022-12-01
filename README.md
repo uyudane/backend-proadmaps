@@ -43,6 +43,8 @@
 - RDS(MySQL)
 - CircleCIを使用したCI/CD
 
+※ ユーザに使用してもらう向けのHerokuにデプロイしたリポジトリと、[Amazon ECSにデプロイしたレポジトリ](https://github.com/uyudane/ecs_backend_portfolio)があり、本リポジトリはHerokuにデプロイしたものになります。
+
 ## メインのターゲットユーザー
 
 - 転職を目標としている駆け出しエンジニア
