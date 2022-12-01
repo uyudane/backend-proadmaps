@@ -127,7 +127,7 @@ https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 [ER 図](https://raw.githubusercontent.com/uyudane/portfolio-backend/918501942c1535b6a47e9ee6a8224300487ce118/DB_design/ERD.svg)
 <br>[テーブル定義](https://github.com/uyudane/portfolio-backend/blob/main/DB_design/DB_description.md)
 
-## スケジュール (10/17スケジューリング&実績)
+## 10/17スケジューリング&実績
 
 1. 企画(アイデア企画・技術調査)：10/16
 2. 設計(README、画面遷移図、ER 図の作成)：10/23 〆切 →10/22実施
