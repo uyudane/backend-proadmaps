@@ -114,6 +114,9 @@ https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 **管理機能**
 - 管理ユーザでログインすることで、ユーザと、ロードマップを管理することができる。
 
+### その他
+- PC、スマートフォン、タブレットに合わせたレスポンシブデザインに対応。(スマホではロードマップ作成、編集機能は使用不可)
+
 ## 画面遷移図
 
 [Figma\_画面遷移図](https://www.figma.com/file/0mi3TY1BTtcFXcVaOYVloi/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0%3A1)
