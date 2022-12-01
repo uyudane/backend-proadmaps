@@ -8,7 +8,7 @@
 プログラミング学習において、何の教材をどの順番で学習していくべきか困っている駆け出しエンジニアに、
 <br>先輩エンジニアが行ってきた学習ロードマップを提供するサービスです。
 
-## 使用技術
+## 主な使用技術
 
 ### 認証
 
@@ -18,8 +18,7 @@
 
 - Ruby(3.1.2)
 - Ruby&nbsp;on&nbsp;Rails(7.0.4)\*API モード
-- ActiveModel::Serializers
-- JWT
+- Docker / Docker Compose
 
 ### フロントエンド
 
@@ -30,7 +29,18 @@
 - Axios
 - SWR
 - MUI
-- React DnD 
+
+### インフラ
+1. フロントエンド
+- Vercel
+
+2. バックエンド ※
+- Amazon ECS(Fargate)
+- Amazon ECR
+- Amazon Route53
+- AWS Certificate Manager
+- Application Load Balancer
+- RDS(MySQL)
 
 ## メインのターゲットユーザー
 
