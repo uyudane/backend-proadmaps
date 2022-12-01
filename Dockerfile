@@ -1,5 +1,5 @@
 # ベースイメージ
-FROM ruby:3.1
+FROM ruby:3.1.2
 
 # ローカルでは、docker-composeでdevelopmentに上書きされる。
 ENV RAILS_ENV=production
