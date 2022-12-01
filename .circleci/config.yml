@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.1.2
     working_directory: ~/backend-proadmaps/src
     steps:
       # gitのrepositoryをコピー
@@ -17,7 +17,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.1.2
       - image: cimg/postgres:14.5
         environment:
           POSTGRES_USER: postgres
@@ -44,7 +44,7 @@ jobs:
 
   deploy:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.1.2
     steps:
       - checkout
       # herokuにデプロイする際にdockerコマンドを使用できるようにしている
