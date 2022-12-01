@@ -97,6 +97,7 @@ https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 **ロードマップ新規作成/編集/下書き機能**
 1. ロードマップ/学習記録の概要作成
 - タイトル、タグ、開始時スキル等を設定したロードマップの投稿、更新、削除をすることができる。
+- ユーザの入力が楽になる&何を入力すればいいかわかるように、MUIのAutoCompleteを使用して、記入案からの選択と、自由記述の両方できるようにしている。
 [![Image from Gyazo](https://i.gyazo.com/5df4770164ea64a222540ef9bc9db158.gif)](https://gyazo.com/5df4770164ea64a222540ef9bc9db158)
 
 2. ステップ作成
