@@ -41,6 +41,7 @@
 - AWS Certificate Manager
 - Application Load Balancer
 - RDS(MySQL)
+- CircleCIを使用したCI/CD
 
 ## メインのターゲットユーザー
 
