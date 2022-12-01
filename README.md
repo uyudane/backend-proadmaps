@@ -19,7 +19,6 @@
 - Ruby(3.1.2)
 - Ruby&nbsp;on&nbsp;Rails(7.0.4)\*API モード
 - ActiveModel::Serializers
-- RSpec
 - JWT
 
 ### フロントエンド
