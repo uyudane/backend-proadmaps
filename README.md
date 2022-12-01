@@ -87,7 +87,7 @@
 https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 
 
-**ロードマップ投稿機能**
+**ロードマップ新規作成/編集/下書き機能**
 1. ロードマップ/学習記録の概要作成
 - タイトル、タグ、開始時スキル等を設定したロードマップの投稿、更新、削除をすることができる。
 [![Image from Gyazo](https://i.gyazo.com/5df4770164ea64a222540ef9bc9db158.gif)](https://gyazo.com/5df4770164ea64a222540ef9bc9db158)
@@ -100,6 +100,9 @@ https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 
 3. 確認
 - 投稿したロードマップを、他ユーザに表示される形式で、事前に確認することができる。
+
+**ロードマップ下書き一覧機能
+- 下書きしたロードマップを一覧で表示することができる。
 
 **プロフィール詳細/編集機能**
 - 各ユーザのユーザ情報、投稿/いいねしたロードマップを見ることができる。
@@ -121,10 +124,10 @@ https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 [ER 図](https://raw.githubusercontent.com/uyudane/portfolio-backend/918501942c1535b6a47e9ee6a8224300487ce118/DB_design/ERD.svg)
 <br>[テーブル定義](https://github.com/uyudane/portfolio-backend/blob/main/DB_design/DB_description.md)
 
-## スケジュール
+## スケジュール (10/17スケジューリング&実績)
 
-1. 企画(アイデア企画・技術調査)：10/16 〆切
-2. 設計(README、画面遷移図、ER 図の作成)：10/23 〆切
+1. 企画(アイデア企画・技術調査)：10/16
+2. 設計(README、画面遷移図、ER 図の作成)：10/23 〆切 →10/22実施
 3. メイン機能実装：11/20 〆切
-4. MVP リリース：11/20
+4. MVP リリース：11/20 →11/22実施
 5. 本番リリース：11 月末
