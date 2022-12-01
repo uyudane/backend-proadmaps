@@ -26,6 +26,8 @@
 
 ## 主な使用技術
 
+![image](https://user-images.githubusercontent.com/103183815/204979763-a9fb0ea1-d71e-4810-bc08-0c8d381e1ded.png)
+
 ### 認証
 
 - Auth0
