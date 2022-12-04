@@ -291,4 +291,4 @@ def update_with_tags_steps(tag_list:, roadmap_params:, step_list: [])
 2. 設計(README、画面遷移図、ER 図の作成)：10/23 〆切 →10/22実施
 3. メイン機能実装：11/20 〆切
 4. MVP リリース：11/20 →11/22実施
-5. 本番リリース：11 月末
+5. 本番リリース：11 月末 →12/2実施
