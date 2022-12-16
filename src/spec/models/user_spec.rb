@@ -4,7 +4,7 @@ RSpec.describe User, type: :model do
   it "全ての要素が含まれている場合は有効な状態であること" do
     user = User.new(
       name: "name1",
-      sub: "12345",
+      sub: "sub1",
       avatar: "avatar1",
       github_account: "github_account1",
       twitter_account: "twitter_account1",
