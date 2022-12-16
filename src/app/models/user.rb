@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   validates :name, presence: true
   validates :avatar, presence: true
+  validates :sub, presence: true
 
   def self.from_token_payload(payload)
     # すでにユーザ情報があった場合はその情報を取得
