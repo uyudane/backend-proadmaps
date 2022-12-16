@@ -1,58 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Roadmap, type: :model do
-  before do
-    @user = User.create(
-      name: "name1",
-      sub: "sub1",
-      avatar: "avatar1",
-      github_account: "github_account1",
-      twitter_account: "twitter_account1",
-    )
-  end
+
+  let(:user) {FactoryBot.create(:user)}
 
   it "全ての要素が含まれている場合は有効な状態であること" do
-    roadmap = Roadmap.new(
-      user: @user,
-      title: "title1",
-      introduction: "introduction1",
-      start_skill: "start_skill1",
-      end_skill: "end_skill1",
-      is_published: true,
-    )
+    roadmap = FactoryBot.build(:roadmap)
     expect(roadmap).to be_valid
   end
 
   it "ユーザーとタイトルがあれば有効な状態であること" do
     roadmap = Roadmap.new(
-      user: @user,
+      user: user,
       title: "title1",
     )
     expect(roadmap).to be_valid
   end
 
   it "titleがなければ無効な状態であること" do
-    roadmap = Roadmap.new(
-      user: @user,
-      # title: "title1",
-      introduction: "introduction1",
-      start_skill: "start_skill1",
-      end_skill: "end_skill1",
-      is_published: true,
-    )
+    roadmap = FactoryBot.build(:roadmap, title: nil)
     roadmap.valid?
     expect(roadmap.errors[:title]).to include("can't be blank")
   end
 
   it "userがなければ無効な状態であること" do
-    roadmap = Roadmap.new(
-      # user: @user,
-      title: "title1",
-      introduction: "introduction1",
-      start_skill: "start_skill1",
-      end_skill: "end_skill1",
-      is_published: true,
-    )
+    roadmap = FactoryBot.build(:roadmap, user: nil)
     roadmap.valid?
     expect(roadmap.errors[:user]).to include("must exist")
   end
