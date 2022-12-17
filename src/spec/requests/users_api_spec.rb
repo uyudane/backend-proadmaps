@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "UsersApi", type: :request do
-  # let(:user) {FactoryBot.create(:user)}
-
   before do
     authorization_moc
   end
