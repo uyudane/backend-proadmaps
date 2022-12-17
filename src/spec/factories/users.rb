@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :user do
-    name {"name1"}
-    sub {"sub1"}
-    avatar {"avatar1"}
-    github_account {"github_account1"}
-    twitter_account {"twitter_account1"}
+    name {"name"}
+    sequence(:sub) { |n| "sub#{n}" }
+    avatar {"avatar"}
+    github_account {"github_account"}
+    twitter_account {"twitter_account"}
   end
 end
