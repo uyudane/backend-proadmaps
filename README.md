@@ -6,37 +6,20 @@
 
 
 ## サービス概要
-
-【閲覧者向け】
-<br>プログラミング学習において、何の教材をどの順番で学習していくべきか困っている駆け出しエンジニアに、先輩エンジニアが行ってきた学習ロードマップを提供するサービスです。
-
-【投稿者向け】
-<br>自身のプログラミング学習記録をつけたい/Qiita等に投稿して他のユーザに貢献したいエンジニアに、楽にロードマップ/学習記録をつけられるツールを提供するサービスです。
+プログラミング学習において、何の教材をどの順番で学習していくべきか困っている駆け出しエンジニアに、先輩エンジニアが行ってきた学習ロードマップを提供するサービスです。
 
 ## メインのターゲットユーザー
-【閲覧者向け】
 - 転職を目標としている駆け出しエンジニア
 - 新しい技術をキャッチアップしたい新米エンジニア
 
-【投稿者向け】
-- 自身の学習記録をつけたいエンジニア
-
 ## ユーザーが抱える課題
-【閲覧者向け】
 プログラミングの学習教材を選択するにあたって、書籍や動画、ハンズオンサービスなど、有料/無料、公式/非公式のものを含めてさまざまなサービスがあり、受講者のスキルレベルによっても最適な学習教材は異なります。
 <br>教材ごとのレビューは各サイトに載っていることがありますが、その教材の前後にどのような教材を実施するべきかは記載されていないことが多いです。
 <br>特に、入門用の参考書と中級者向けの学習教材の難易度差は大きく、その壁を乗り越えるために複数の教材を適切な順番で実施していくことは、初心者にとっては難易度が高いです。
 <br>その結果、教材選び、学習方法を誤って挫折してしまう可能性があります。
 
-【投稿者向け】
-<br>学習記録を残す際に、フォーマットを揃えたり、必要な情報を入力するのに時間がかかってしまうため、作成が面倒くさく、記録を残したいと思っていても作成しないままになってしまう可能性があります。
-
 ## 解決方法
-【閲覧者向け】
-<br>先輩エンジニアが学習を進めてきたロードマップを参考にすることで、良い教材を適切な順番で学習できるようにします。
-
-【投稿者向け】
-<br>ロードマップ/学習記録の作成を楽にするツールとして本サービスを提供します。
+先輩エンジニアが学習を進めてきたロードマップを参考にすることで、良い教材を適切な順番で学習できるようにします。
 
 ## 作成できるロードマップの形式
 一つの「ロードマップ」に、「ステップ」という名前で、使用する教材(書籍、動画、コンテンツ等)を複数紐づけて投稿することができます。
@@ -157,156 +140,14 @@ https://qiita.com/niboshi_uyudane/items/3afd709d7c7dec22e267
 ### その他
 - PC、スマートフォン、タブレットに合わせたレスポンシブデザインに対応。(スマホではロードマップ作成、編集機能は使用不可)
 
-## 苦労した点・工夫した点
-ロードマップに紐づくステップの作成、編集機能の作成に苦労しました。
-<br>フロントエンド側では、新規作成、下書きからの更新、作成済みのロードマップの編集で同じコンポーネントを使用したため、初期値の設定に苦労しました。また、作成済みロードマップの更新機能では、古いステップの一部が削除されたり、編集されたり、新規作成のステップが元のステップより前の順番に移動されたりする際の挙動を、Recoilでの配列の状態管理とReactDnDでの順番の入れ替えで実装するのに苦労しました。
-<br>また、バックエンドでは、作成済みロードマップの更新機能において、上記のようなステップの更新があった際に、もともとDBに登録されているデータの一部が更新、一部は削除といった処理を行う必要があり、実装に苦労しました。
-
-### フロントエンド
-
-- ステップの順番変更処理の一部抜粋(DndStepContainer.tsx)
-```DndStepContainer.tsx
-  const [steps, setSteps] = useRecoilState(stepsState);
-  const moveStep = useCallback((dragIndex: number, hoverIndex: number) => {
-    setSteps((prevSteps: Step[]) =>
-      update(prevSteps, {
-        $splice: [
-          // ドラッグしたindexの値を削除
-          [dragIndex, 1],
-          // ホバーした先のインデックスに挿入する
-          [hoverIndex, 0, prevSteps[dragIndex] as Step],
-        ],
-      }),
-    );
-  }, []);
-```
-
-- ステップの新規作成・編集処理の一部抜粋(CreateStepDialog.tsx)
-```CreateStepDialog.tsx
-// 編集時に使用する関数。編集するオブジェクトの値を変更して、前後は元の値で上書く。
-const replaceItemAtIndex = (arr: Step[], index: number, newValue: Step) => {
-  return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-};
-...
-  // フォーム送信時の処理
-  const onSubmit: SubmitHandler<Step> = async (data) => {
-    // 新規作成時の処理(配列に新しいオブジェクトを追加)
-    if (typeof index === 'undefined') {
-      setSteps((oldSteps) => [
-        ...oldSteps,
-        {
-          // 新規作成時はgetStepId()が渡されている想定
-          id: currentStep?.id || getStepId!(),
-          url: data.url,
-          title: data.title,
-          introduction: data.introduction,
-          required_time: data.required_time,
-          year: data.year,
-          month: data.month,
-          // step_numberは表示の際に使用するもので、作成時には関係ないためnullを入れる
-          step_number: null,
-        },
-      ]);
-      reset();
-    } else {
-      // 編集時の処理(配列の指定の値を変更する)
-      const newList = replaceItemAtIndex(steps, index, {
-        //index === 'undefined出ない時点で、idに値が入っている想定
-        id: currentStep.id as number,
-        url: data.url,
-        title: data.title,
-        introduction: data.introduction,
-        required_time: data.required_time,
-        year: data.year,
-        month: data.month,
-        // step_numberは表示の際に使用するもので、作成時には関係ないためnullを入れる
-        step_number: null,
-      });
-      setSteps(newList);
-    }
-    handleClose();
-  };
-```
-
-- ステップの削除の一部抜粋(DeleteStepButton.tsx)
-``` DeleteStepButton.tsx
-const removeItemAtIndex = (arr: Step[], index: number) => {
-  return [...arr.slice(0, index), ...arr.slice(index + 1)];
-};
-const DeleteStepButton = ({ index }: { index: number }) => {
-  const [steps, setSteps] = useRecoilState(stepsState);
-  const deleteItem = () => {
-    const newList = removeItemAtIndex(steps, index);
-    setSteps(newList);
-  };
-  return (
-    <>
-      <Button variant='text' onClick={deleteItem}>
-        削除
-      </Button>
-    </>
-  );
-};
-```
-
-### バックエンド
-
-ロードマップコントローラーのupdateメソッド(roadmaps_controller.rb)
-``` roadmaps_controller.rb
-  def update
-    # ユーザー認証
-    tag_list = params[:tags]
-    step_list = params[:steps]
-    if @roadmap.update_with_tags_steps(tag_list:, step_list:, roadmap_params:)
-      render json: @roadmap, status: 200
-    else
-      render_500(nil, @roadmap.errors.full_messages)
-    end
-  end
-```
-
-ロードマップモデルのupdate_with_tags_stepsメソッド(roadmap.rb)
-``` roadmap.rb
-def update_with_tags_steps(tag_list:, roadmap_params:, step_list: [])
-    ActiveRecord::Base.transaction do
-      # Tagが既にあればそのオブジェクトを、なければ新しくタグを作成して作成後のオブジェクトを返し、
-      # self.tagsに代入することでロードマップとタグを紐づける
-      # updateの場合でも、同様の記載でよい
-      # 新たに関連づけられると、元あったタグは、中間テーブルから削除される
-      self.tags = tag_list.map { |tag| Tag.find_or_initialize_by(name: tag[:name].strip) }
-      # 現在ロードマップに紐づいているstepのidを確認(今回のリクエストで存在しなかったものを削除するために使用)
-      current_id = steps.map { |step| step[:id] }
-      # 取得したstep情報とインデックス(配列の順番)を使用して、ロードマップに紐づいたstep情報を作成する
-      step_list.each.with_index do |step, index|
-        step_params = step.permit(:url, :title, :introduction, :required_time, :year,
-                                  :month).merge(step_number: index + 1)
-        # 新しいステップの場合は新しく作成する
-        if steps.find_by_id(step[:id]).nil?
-          steps.build(step_params)
-        else
-          # 既存のステップの場合は上書きする
-          steps.find_by_id(step[:id]).update!(step_params)
-          # 削除対象idリストから外す
-          current_id.delete(step[:id])
-        end
-      end
-      current_id.each { |id| Step.find(id).destroy! }
-      update!(roadmap_params)
-    end
-    true
-  rescue StandardError
-    false
-  end
-```
-
-
 ## 画面遷移図
-
 [Figma\_画面遷移図](https://www.figma.com/file/0mi3TY1BTtcFXcVaOYVloi/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA?node-id=0%3A1)
 <br>[カスタマージャーニーマップ](https://docs.google.com/spreadsheets/d/1GzpPlzdImhLdQxsnRQElXNBPGJt_X86fwO713I8Jfdo/edit?usp=sharing)
 
-## 10/17スケジューリング&実績
+## Qiita記事
+[サービス紹介記事](https://qiita.com/uyudane/items/fa4ec11b13002f0cd3c5)
 
+## 10/17スケジューリング&実績
 1. 企画(アイデア企画・技術調査)：10/16
 2. 設計(README、画面遷移図、ER 図の作成)：10/23 〆切 →10/22実施
 3. メイン機能実装：11/20 〆切
