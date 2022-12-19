@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "LikesApi", type: :request do
-  let!(:current_user) { create(:user) }
+  let!(:current_user) { FactoryBot.create(:user) }
 
   before do
     authorization_moc

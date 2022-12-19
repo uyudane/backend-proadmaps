@@ -3,6 +3,7 @@
 class Api::V1::LikesController < SecuredController
   def create
     roadmap = Roadmap.find(params[:roadmapId])
+    # binding.b
     @current_user.like(roadmap)
     render json: { status: 200, message: "OK" }
   end

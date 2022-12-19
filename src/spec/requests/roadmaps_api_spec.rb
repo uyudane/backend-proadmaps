@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "RoadmapsApi", type: :request do
+  let!(:current_user) { FactoryBot.create(:user) }
+
   before do
     authorization_moc
   end
