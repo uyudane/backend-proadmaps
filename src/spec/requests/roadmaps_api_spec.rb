@@ -1,11 +1,22 @@
 require 'rails_helper'
 
 RSpec.describe "RoadmapsApi", type: :request do
-  describe "GET /roadmaps_apis" do
-    it "works! (now write some real specs)" do
+  let!(:current_user) { FactoryBot.create(:user) }
+
+  before do
+    authorization_moc
+  end
+
+  describe "GET /api/v1/roadmaps" do
+    let(:roadmap_num) { 5 }
+    before do
+      FactoryBot.create_list(:roadmap, roadmap_num)
+    end
+    it "indexの結果" do
       get api_v1_roadmaps_path
-      # p response
+      json = JSON.parse(response.body)
       expect(response).to have_http_status(200)
+      expect(json.count).to eq(roadmap_num)
     end
   end
 end
